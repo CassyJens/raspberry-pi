@@ -9,9 +9,9 @@ var keys = {
 };
 var T = new Twit(keys);
 
-console.log(keys);
-
+// get a random image from bukk.it
 http.get("http://bukkit.tangentialism.com/", function (res) {
+    // TODO add IMG from response to tweet
     console.log("got response ", res.statusCode);
     T.post('statuses/update', { status: 'hello world!' }, function (err, data, response) {
         console.log("data is", data);
@@ -20,4 +20,3 @@ http.get("http://bukkit.tangentialism.com/", function (res) {
 }).on('error', function (e) {
     console.log("error occurred", e);
 });
-
