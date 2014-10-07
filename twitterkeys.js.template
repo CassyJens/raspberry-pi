@@ -1,0 +1,8 @@
+var twitterkeys = {
+    consumerKey: "...",
+    consumerSecret: "...",
+    accessToken: "...",
+    accessTokenSecret: "..."
+};
+
+module.exports = twitterkeys;
