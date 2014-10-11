@@ -1,2 +1,2 @@
-var twitterBot = requre('twitter-bot');
+var twitterBot = require('./twitter-bot');
 twitterBot.randomGif();

@@ -1,5 +1,5 @@
 var pfio = require('piface-node');
-var twitterBot = require('twitter-bot');
+var twitterBot = require('./twitter-bot');
 
 pfio.init();
 var foo = pfio.read_input(); // bit-mapped
