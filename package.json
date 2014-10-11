@@ -1,0 +1,11 @@
+{
+  "name": "twitter-bot",
+  "description": "piface & raspberry pi twitter bot",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "~4.9.7",
+    "twit": "~1.1.18",
+    "request": "~2.45.0"
+  }
+}

@@ -1,4 +1,5 @@
 var http = require('http');
+var request = require('request');
 var twitterkeys = require('./twitterkeys');
 var Twit = require('twit');
 var keys = {
@@ -9,14 +10,14 @@ var keys = {
 };
 var T = new Twit(keys);
 
-// get a random image from bukk.it
-http.get("http://bukkit.tangentialism.com/", function (res) {
-    // TODO add IMG from response to tweet
-    console.log("got response ", res.statusCode);
-    T.post('statuses/update', { status: 'hello world!' }, function (err, data, response) {
-        console.log("data is", data);
-        console.log("error is", err);
-    });
-}).on('error', function (e) {
-    console.log("error occurred", e);
-});
+module.exports = {
+    randomGif: http.get("http://bukkit.tangentialism.com/", function (res) {
+        request(options, function (response, error, body){
+            T.post('statuses/update', { status: 'random gif: [' + res.headers.location + ']'}, function (err, data, response) {
+
+            });
+        });
+    }).on('error', function (e) {
+        console.log("error occurred", e);
+    })
+};

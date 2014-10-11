@@ -12,10 +12,9 @@ npm install piface-node
 ```
 
 With Node.js and the piface-node module, you can run examples 'lights-on.js' and 'lights-off.js', which are renamed examples from the piface-node project referenced above.
-The other dependency, necessary to run twitter-bot.js, should be installed in the project root using the following command:
+The other dependencies, necessary to run twitter-bot.js, should be installed in the project root using the following command:
 
 ```
-npm install twit
+npm install
 ```
-
-twitter-bot.js is a work-in-progress. My original plan was to hook the switches up to the twitter-bot.js for posting random GIFs from bukk.it to a Twitter account, for fun and cheap entertainment. 
+twitter-bot posts a random gif from bukk.it to your twitter account.
