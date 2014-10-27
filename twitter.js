@@ -11,13 +11,16 @@ var keys = {
 var T = new Twit(keys);
 
 module.exports = {
-    randomGif: function () {
-        http.get("http://bukkit.tangentialism.com/", function (res) {
-            T.post('statuses/update', { status: 'random gif: [' + res.headers.location + ']'}, function (err, data, response) {
-
-            });
-        }).on('error', function (e) {
-            console.log("error occurred", e);
-        });
+    /**
+     * Posts a tweet to a twitter feed.
+     * @param {string} status - the status to be posted to twitter feed
+     * @param {function} success - is passed err, data, response
+     */
+    tweet: function (status, success) {
+        T.post(
+            'statuses/update',
+            {status: status},
+            success
+        );
     }
 };

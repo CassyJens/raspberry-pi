@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <script src="javascript.js"></script> -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="theme.css">
+    <link rel="stylesheet" type="text/css" href="loading.css">
+    <link href='http://fonts.googleapis.com/css?family=Cardo:400,700' rel='stylesheet' type='text/css'>
+    <title>Random Gif Generator</title>
+</head>
+<body>
+    <header class="centered-content">
+        <h1>
+            Random Gif Generator
+        </h1>
+        <p>
+            Use this web app to view random gifs at your leisure.
+            <br />
+            <b> Coming Soon: </b> Tweet your random gif!
+        </p>
+        <div class="action refresh-action">
+            <img src="ic_cached_24px.svg" class="refresh-icon"> Generate
+        </div>
+    </header>
+    <hr>
+    <div id="gif-container" class="centered-content" title="click to generate random tweet">
+        <div id="loader" class="spinner hidden">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+        <img id="gif" src="http://bukk.it/barn-owl-bill.jpg" />
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        var $gifAction = $('.refresh-action');
+
+        var toggleLoading = function () {
+            $('#gif').toggleClass('hidden');
+            $('#loader').toggleClass('hidden');
+        };
+
+        var updateGif = function () {
+            toggleLoading();
+            $.get('/gif', function (data) {
+                $('#gif').attr('src', data.gif);
+                toggleLoading();
+            });
+        };
+
+        $gifAction.click(updateGif);
+    });
+</script>
+</html>
