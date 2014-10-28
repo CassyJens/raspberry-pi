@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- <script src="javascript.js"></script> -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="theme.css">
+    <script src="images-loaded.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" type="text/css" href="loading.css">
     <link href='http://fonts.googleapis.com/css?family=Cardo:400,700' rel='stylesheet' type='text/css'>
     <title>Random Gif Generator</title>
 </head>
 <body>
-    <header class="centered-content">
-        <h1>
-            Random Gif Generator
-        </h1>
-        <p>
-            Use this web app to view random gifs at your leisure.
-            <br />
-            <b> Coming Soon: </b> Tweet your random gif!
-        </p>
-        <div class="action refresh-action">
-            <img src="ic_cached_24px.svg" class="refresh-icon"> Generate
+    <menu class="toolbar centered-content">
+        <div class="container">
+            <ul class="toolbar-context-actions row">
+                <li class="action refresh-action" title="click to generate random tweet">
+                    Generate <img src="ic_cached_24px.svg" class="refresh-icon">
+                </li>
+            </ul>
+        </div>
+    </menu>
+    <header class="top-header">
+        <div class="container">
+            <h1 class="top-header-title"> Random Gif Generator </h1>
         </div>
     </header>
-    <hr>
-    <div id="gif-container" class="centered-content" title="click to generate random tweet">
+    <section id="main-content">
         <div id="loader" class="spinner hidden">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
         </div>
-        <img id="gif" src="http://bukk.it/barn-owl-bill.jpg" />
+        <div id="gif-container" class="centered-content">
+            <img id="gif" />
+        </div>
     </div>
 </body>
 <script>
     $(document).ready(function () {
         var $gifAction = $('.refresh-action');
-
         var toggleLoading = function () {
-            $('#gif').toggleClass('hidden');
+            $('#gif-container').toggleClass('hidden');
             $('#loader').toggleClass('hidden');
         };
-
         var updateGif = function () {
             toggleLoading();
-            $.get('/gif', function (data) {
+            var jqxr = $.get('/gif', function (data) {
                 $('#gif').attr('src', data.gif);
-                toggleLoading();
+                $gifAction.imagesLoaded().done(toggleLoading);
             });
         };
 
         $gifAction.click(updateGif);
+        $gifAction.trigger('click');
     });
 </script>
 </html>
